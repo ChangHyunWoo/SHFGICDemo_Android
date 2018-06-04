@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/d_transparent"
+    tools:context=".view.pctoapp.PcToAppActivity">
+
+    <include layout="@layout/include_top" />
+
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutTop"
+        android:background="#efefef"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="21dp"
+            android:layout_marginTop="27dp"
+            android:fontFamily="@font/oneshinhanlight"
+            android:gravity="center"
+            android:text="@string/pctoapp_qrcode_scan_guide"
+            android:textColor="#666666"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+    <!-- PcToApp QR Code Scanner -->
+    <FrameLayout
+        android:id="@+id/frameScannerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutMain" />
+
+</RelativeLayout>

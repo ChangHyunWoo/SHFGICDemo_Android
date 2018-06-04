@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/include_top" />
+
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutTop"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:fontFamily="@font/oneshinhanlight"
+                android:includeFontPadding="false"
+                android:text="@string/select_loginyn"
+                android:textSize="15dp" />
+
+            <Spinner
+                android:id="@+id/spinnerLoginYn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:entries="@array/loginyn"
+                android:text=""
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:includeFontPadding="false"
+                android:text="접속서버"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/etServer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:fontFamily="@font/oneshinhanlight"
+                android:singleLine="true"
+                android:text=""
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:includeFontPadding="false"
+                android:text="이름"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/etCiName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:fontFamily="@font/oneshinhanlight"
+                android:singleLine="true"
+                android:text=""
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:includeFontPadding="false"
+                android:text="CI"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/etCi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:fontFamily="@font/oneshinhanlight"
+                android:text=""
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="#dddddd"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:id="@+id/btnRegist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/title_issued"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/btnTermination"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/title_termination_option"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="#dddddd"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/shfgic_login"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/logout"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:background="#dddddd"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:id="@+id/btnESign"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/title_esign"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+
+            <TextView
+                android:id="@+id/btnIC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/oneshinhanlight"
+                android:gravity="center"
+                android:text="@string/title_management"
+                android:textSize="15dp"
+                tools:ignore="Suspicious0dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

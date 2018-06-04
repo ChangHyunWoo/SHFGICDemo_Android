@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <drawable name="d_transparent">#00000000</drawable>
+
+
+    <!-- OnePass Fido 지문 관련 설정 -->
+    <color name="finger_fail_color">#de2800</color>
+    <color name="finger_success_color">#3a7bd3</color>
+    <color name="hint_color">#666666</color>
+    <color name="success_color">#3a7bd3</color>
+    <color name="warning_color">#de2800</color>
+</resources>

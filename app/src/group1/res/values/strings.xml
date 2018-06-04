@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SHFGIC Demo Group1</string>
+
+    <string name="title_main">신한통합인증 Demo Group1</string>
+
+    <string name="suspension_option_desc"><![CDATA[
+    신한은행 <font color=#3a7bd3>\'쏠(SOL)\'<br/>앱</font>에서만 사용안함
+    ]]></string>
+</resources>

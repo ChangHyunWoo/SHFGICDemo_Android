@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SHFGIC Demo Group2</string>
+
+    <string name="title_main">신한통합인증 Demo Group2</string>
+
+    <string name="suspension_option_desc"><![CDATA[
+    신한카드 <font color=#3a7bd3>\'신한카드\'<br/>앱</font>에서만 사용안함
+    ]]></string>
+</resources>

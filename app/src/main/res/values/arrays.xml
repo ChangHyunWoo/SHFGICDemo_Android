@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="company">
+        <item >Group1</item>
+        <item >Group2</item>
+        <!--<item >은행</item>
+        <item >카드</item>
+        <item >금투</item>
+        <item >생명</item>-->
+    </string-array>
+
+    <string-array name="server">
+        <item >AWS</item>
+        <!--<item >개발</item>
+        <item >운영</item>-->
+    </string-array>
+
+    <string-array name="ci">
+        <!--<item >석신한 : V+wq31R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >한신한 : V+wq32R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >이신한 : V+wq33R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >김신한 : V+wq34R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >박신한 : V+wq35R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>-->
+        <item >석신한 : V+wq36R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >장신한 : V+wq37R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >허신한 : V+wq38R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >전신한 : V+wq39R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+        <item >신신한 : V+wq40R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe5w==</item>
+
+        <!--<item >V+wqf8R/lhyzkmxq4+8XpAWPbF41pBFyN+c/k8qJBGXcaBT6RGrXWvNKi0KLrHmv5UxH2XTAG2LjRkHuz7fe6w==</item>-->
+    </string-array>
+
+    <string-array name="loginyn">
+        <item >비로그인</item>
+        <item >로그인상태</item>
+    </string-array>
+</resources>
