@@ -266,10 +266,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         //그룹사 코드 (BANK:은행:001, CARD:카드:002, INVESTMENT:금투:003, INSURANCE:생명:004) - 데모앱에서는 001/002 만 사용
         //default : Group1 (001)
-        String serverDomain = "http://13.124.170.128:8080";
+        String serverDomain = "http://1.237.181.61:8080";
 
         //fido 접속 정보
-        String serverFido = "http://13.124.161.80:8080";
+        String serverFido = "http://1.237.181.62:8080";
         String fidoSiteId = "SHG00000000000";
         String fidoSvcId = "SHG11111111111";
 
