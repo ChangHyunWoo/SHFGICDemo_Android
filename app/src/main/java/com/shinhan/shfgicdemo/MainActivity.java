@@ -397,7 +397,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             }
         }
     }
-
+// test againg
     private void checkVerifySHFGIC(String msg) {
 
         String resultMsg = "", resourceAlert = "", trId = "";
