@@ -275,9 +275,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         //Group2 (002)
         if (getGroupCode().equals(SHFGICConfig.CodeGroupCode.CARD.getValue())) {
-//            serverDomain = "http://13.125.27.166:8080";
-            serverDomain = "http://13.124.170.128:9080";
-            serverFido = "http://13.125.21.27:8080";
+            serverDomain = "http://1.237.181.65:8080";
+            serverFido = "http://1.237.181.66:8080";
             fidoSiteId = "SHG00000000001";
             fidoSvcId = "SHG11111111112";
         }

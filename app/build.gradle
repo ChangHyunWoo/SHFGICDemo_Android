@@ -48,16 +48,18 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-//    implementation project(':ic_sso')
 
     /* ZXING - QR Code Scanner */
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
 
     /* FIDO Raon onepass */
     implementation 'com.google.code.gson:gson:2.2.4'
-    implementation ':onepass_sdk_urasm-1.0.22.6552_release_20180322:@aar'
+    implementation ':onepass_sdk_urasm-1.0.23.6904_release_20180420:@aar'
+    implementation ':oms-v2.0.23.6991-defaultAssets-release:@aar'
     implementation ':onepass_biocertmgr-1.0.0.6504_release_20180315:@aar'
-    implementation ':oms-v2.0.22.6529-defaultAssets-release:@aar'
+
+//    implementation ':onepass_sdk_urasm-1.0.22.6552_release_20180322:@aar'
+//    implementation ':oms-v2.0.22.6529-defaultAssets-release:@aar'
 
 //    implementation ':onepass_sdk_urasm-1.0.22.6552_debug_20180322:@aar'
 //    implementation ':onepass_biocertmgr-1.0.0.6504_debug_20180315:@aar'

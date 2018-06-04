@@ -57,12 +57,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     //서버 연동 Url 설정
     private String getWebUrl() {
         //default : Group1
-        String serverDomain = "http://13.124.170.128:8080";
+        String serverDomain = "http://1.237.181.61:8080";
 
         //Group2
         if (getGroupCode().equals(SHFGICConfig.CodeGroupCode.CARD.getValue())) {
-//            serverDomain = "http://13.125.27.166:8080";
-            serverDomain = "http://13.124.170.128:9080";
+            serverDomain = "http://1.237.181.65:8080";
         }
         return serverDomain;
     }
