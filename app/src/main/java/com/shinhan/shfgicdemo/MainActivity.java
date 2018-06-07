@@ -258,11 +258,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     //Demo용 설정
     public void initPropertyDemo() {
         //api url
-        String apiListSHFGIC = "/shfgic/listShic";         //통합인증서 목록
-        String apiVerifySHFGIC = "/shfgic/verifyShic";     //사용자 유효성 검증
-        String apiRequestFido = "/shfgic/requestFido";     //FIDO 요청
-        String apiCheckPinRule = "/shfgic/checkPinRule";   //PIN번호 유효성 확인
-        String apiRequestSso = "/shfgic/getSsoData";
+        String apiListSHFGIC = "/shic/listShic";         //통합인증서 목록
+        String apiVerifySHFGIC = "/shic/verifyShic";     //사용자 유효성 검증
+        String apiRequestFido = "/shic/requestFido";     //FIDO 요청
+        String apiCheckPinRule = "/shic/checkPinRule";   //PIN번호 유효성 확인
+        String apiRequestSso = "/shic/getSsoData";
 
         //그룹사 코드 (BANK:은행:001, CARD:카드:002, INVESTMENT:금투:003, INSURANCE:생명:004) - 데모앱에서는 001/002 만 사용
         //default : Group1 (001)

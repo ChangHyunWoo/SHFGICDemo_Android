@@ -69,7 +69,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * WebView Url - 각사에서 설정
      */
-    private final String webUrl = getWebUrl() + "/shfgic/res/html";
+    private final String webUrl = getWebUrl() + "/shic/res/html";
     public final String webUrl_use_finger = webUrl + "/joi/joip0010.html";            //지문이용안내
     public final String webUrl_use_pw = webUrl + "/joi/joip0020.html";                //비밀번호이용안내
     public final String webUrl_use = webUrl + "/joi/joim0010.html";                   //신한통합인증 가입 이용안내
