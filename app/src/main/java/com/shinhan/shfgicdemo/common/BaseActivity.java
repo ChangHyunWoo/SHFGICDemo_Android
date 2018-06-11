@@ -193,7 +193,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                     } catch (JSONException e) {
+                        showToast(BaseActivity.this, e.toString(), Toast.LENGTH_SHORT);
+
+                        return;
                     }
+
                     getPreferenceUtil().put(PREF_SHFGIC_VERIFY_TYPE, shfgicVerifyType);
                     mBaseRegistVerifyShfgic();
                     break;
