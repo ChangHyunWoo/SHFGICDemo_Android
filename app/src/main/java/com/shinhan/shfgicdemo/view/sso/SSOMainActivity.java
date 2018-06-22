@@ -1,5 +1,6 @@
 package com.shinhan.shfgicdemo.view.sso;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class SSOMainActivity extends BaseActivity {
     private static final String TAG = SSOMainActivity.class.getName();
 
@@ -34,10 +36,15 @@ public class SSOMainActivity extends BaseActivity {
     private static final int INDEX_INSURANCE = 3;
     private static final int SHINHAN_GROUP_AFFILIATED_COMPANY_NUM = 4;
 
-    public static final String SSO_INTENT_KEY_GROUP_TYPE = "groupType";
-    public static final String SSO_INTENT_KEY_AFFILIATES_CODE = "affiliates_code";
-    public static final String SSO_INTENT_KEY_SSO_DATA = "sso_data";
-    public static final String SSO_INTENT_KEY_ACTION = "sso_action";
+//    public static final String SSO_INTENT_KEY_GROUP_TYPE = "groupType";
+////    public static final String SSO_INTENT_KEY_AFFILIATES_CODE = "affiliates_code";
+////    public static final String SSO_INTENT_KEY_SSO_DATA = "sso_data";
+////    public static final String SSO_INTENT_KEY_ACTION = "sso_action";
+
+    //SSO Scheme
+    public static final String SSO_PARAM_AFFILIATESCODE = "affiliatesCode";
+    public static final String SSO_PARAM_SSODATA = "ssoData";
+    public static final String SSO_PARAM_SSOTIME = "ssoTime";
 
     public static final int SSO_INTENT_VALUE_NONE = 1000;
     public static final int SSO_INTENT_VALUE_BANK = 1001;
@@ -47,11 +54,13 @@ public class SSOMainActivity extends BaseActivity {
 
     public static final String SSO_PACKAGE_BANK = "com.shinhan.shfgicdemo.group1";
     public static final String SSO_PACKAGE_CARD = "com.shinhan.shfgicdemo.group2";
-    public static final String SSO_PACKAGE_INVESTMENT = "com.shinhan.shfgicdemo.group3";
-    public static final String SSO_PACKAGE_INSURANCE = "com.shinhan.shfgicdemo.group4";
+//    public static final String SSO_PACKAGE_BANK = "com.shinhan.sbanking";
+//    public static final String SSO_PACKAGE_CARD = "com.shcard.smartpay";
 
-//    public static final String SSO_PACKAGE_INVESTMENT = "com.shinhaninvest.nsmts";
-//    public static final String SSO_PACKAGE_INSURANCE = "com.AFSSHLife";
+//    public static final String SSO_PACKAGE_INVESTMENT = "com.shinhan.shfgicdemo.group3";
+//    public static final String SSO_PACKAGE_INSURANCE = "com.shinhan.shfgicdemo.group4";
+    public static final String SSO_PACKAGE_INVESTMENT = "com.shinhaninvest.nsmts";
+    public static final String SSO_PACKAGE_INSURANCE = "com.AFSSHLife";
 
     private ImageView btnTopBack, btnTopMenu = null;
     private TextView tvTopTitle = null;
@@ -327,27 +336,62 @@ public class SSOMainActivity extends BaseActivity {
         if (SSO_INTENT_VALUE_NONE != groupType) {
 
             if (existPackage(groupType, true)) {
-                Intent ssoIntent = getPackageManager().getLaunchIntentForPackage(getPackageName(groupType));
+//                Intent ssoIntent = getPackageManager().getLaunchIntentForPackage(getPackageName(groupType));
+//
+//                switch (groupType) {
+//                    case SSO_INTENT_VALUE_BANK:
+//                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "bank");
+//                        break;
+//                    case SSO_INTENT_VALUE_CARD:
+//                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "card");
+//                        break;
+//                    case SSO_INTENT_VALUE_INVESTMENT:
+//                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "investment");
+//                        break;
+//                    case SSO_INTENT_VALUE_INSURANCE:
+//                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "insurance");
+//                        break;
+//                }
+//
+//                ssoIntent.putExtra(SSO_INTENT_KEY_AFFILIATES_CODE, affiliatesCode);
+//                ssoIntent.putExtra(SSO_INTENT_KEY_SSO_DATA, ssoData);
+
+                Intent ssoIntent = new Intent(Intent.ACTION_VIEW);
+
+                String host = null;
+                String scheme = null;
 
                 switch (groupType) {
                     case SSO_INTENT_VALUE_BANK:
-                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "bank");
+                        host = "";
+                        scheme = "sbankandnor";
                         break;
                     case SSO_INTENT_VALUE_CARD:
-                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "card");
+                        host = "blcsso";
+                        scheme = "shinhan-appcard";
                         break;
                     case SSO_INTENT_VALUE_INVESTMENT:
-                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "investment");
+                        host = "shasso";
+                        scheme = "newshinhanialpha";
                         break;
                     case SSO_INTENT_VALUE_INSURANCE:
-                        ssoIntent.putExtra(SSO_INTENT_KEY_ACTION, "insurance");
+                        host = "smtsso";
+                        scheme = "com.AFSSHLife";
                         break;
                 }
 
-                ssoIntent.putExtra(SSO_INTENT_KEY_AFFILIATES_CODE, affiliatesCode);
-                ssoIntent.putExtra(SSO_INTENT_KEY_SSO_DATA, ssoData);
+                ssoIntent.setData(Uri.parse(scheme + "://" + host + "?" + SSO_PARAM_AFFILIATESCODE + "=" + affiliatesCode + "&"
+                        + SSO_PARAM_SSODATA + "=" + ssoData + "&" + SSO_PARAM_SSOTIME + "=" + System.currentTimeMillis()));
 
-                startActivity(ssoIntent);
+                try {
+                    startActivity(ssoIntent);
+                }
+                catch (ActivityNotFoundException e) {
+                    showToast(this, "ActivityNotFoundException~!!!", Toast.LENGTH_SHORT);
+                }
+                catch (Exception e) {
+                    showToast(this, e.toString(), Toast.LENGTH_SHORT);
+                }
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("market://details?id=" + getPackageName(groupType)));

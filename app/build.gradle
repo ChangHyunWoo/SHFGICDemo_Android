@@ -20,15 +20,34 @@ android {
     flavorDimensions "default"
 
     productFlavors {
+        // 은행
         group1 {
             applicationIdSuffix ".group1"
             buildConfigField "String", "GROUP_CODE", "\"001\""
+            manifestPlaceholders = [activityScheme:"sbankandnor", activityHost:""]
         }
 
+        // 카드
         group2 {
             applicationIdSuffix ".group2"
             buildConfigField "String", "GROUP_CODE", "\"002\""
+            manifestPlaceholders = [activityScheme:"shinhan-appcard", activityHost:"blcsso"]
         }
+
+// test 가능한 server가 2개 뿐이어서 group3, group4는 실제 사용 불가
+//         // 금투
+//        group3 {
+//            applicationIdSuffix ".group3"
+//            buildConfigField "String", "GROUP_CODE", "\"003\""
+//            manifestPlaceholders = [activityScheme:"newshinhanialpha", activityHost:"shasso"]
+//        }
+//
+//         // 생명
+//        group4 {
+//            applicationIdSuffix ".group4"
+//            buildConfigField "String", "GROUP_CODE", "\"004\""
+//            manifestPlaceholders = [activityScheme:"com.AFSSHLife", activityHost:"smtsso"]
+//        }
     }
 }
 

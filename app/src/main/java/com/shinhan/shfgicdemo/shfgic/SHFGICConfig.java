@@ -121,6 +121,7 @@ public class SHFGICConfig {
 
 
 
+
     public static int getStartRequestKey(int requestKey) {
         return requestKey / 100 * 100;
     }
@@ -209,15 +210,15 @@ public class SHFGICConfig {
 
         TERMINATION_I("300"),           //통합인증수단 해지
         SUSPENSION_I("301"),            //통합인증수단 정지
-        TERMINATION_O("302"),           //타인증수단 해지
-        SUSPENSION_O("303"),            //타인증수단 정지
+        TERMINATION_O("302"),           //타인증수단 해지 ==> 그룹사앱 인증수단(가이드앱에서는 사용안함)
+        SUSPENSION_O("303"),            //타인증수단 정지 ==> 그룹사앱 인증수단(가이드앱에서는 사용안함)
 
-        INQUIRE_CERTI("400"),           //인증서조회
+        INQUIRE_CERTI("400"),           //인증서조회 ==> 일반적인 인증(verify : checkRegisteredStatus)
 
         E_SIGN("500"),                  //전자서명
 
-        PASSWORD_AUTH("600"),           //타인증수단 사용자 검증, 통합인증 비밀번호 인증
-        PASSWORD_RESET("601");          //비밀번호 변경
+        PASSWORD_AUTH("600"),           //비밀번호 분실 시 사용자 검증(verify : checkRegisteredStatus), 통합인증 비밀번호 인증(requestServiceAuth) ==> 비밀번호 변경을 위한 인증
+        PASSWORD_RESET("601");          //비밀번호 변경 요청
 
         private final String value;
 

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -42,6 +43,9 @@ import static com.shinhan.shfgicdemo.util.PreferenceUtil.PREF_LOGIN_TYPE;
 import static com.shinhan.shfgicdemo.util.PreferenceUtil.PREF_LOGIN_VERIFYTYPE;
 import static com.shinhan.shfgicdemo.util.PreferenceUtil.PREF_SHFGIC_ICID;
 import static com.shinhan.shfgicdemo.util.PreferenceUtil.PREF_SHFGIC_VERIFY_TYPE;
+import static com.shinhan.shfgicdemo.view.sso.SSOMainActivity.SSO_PARAM_AFFILIATESCODE;
+import static com.shinhan.shfgicdemo.view.sso.SSOMainActivity.SSO_PARAM_SSODATA;
+import static com.shinhan.shfgicdemo.view.sso.SSOMainActivity.SSO_PARAM_SSOTIME;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = MainActivity.class.getName();
@@ -358,19 +362,31 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void doSSOSetting(Intent intent) {
         if (null != intent) {
-            if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_ACTION)) {
+//            if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_ACTION)) {
+            if (intent.ACTION_VIEW.equals(intent.getAction())) {
                 sendPropertyDemo();
 
 //                showToast(this, "Call " + intent.getStringExtra("sso_action"), Toast.LENGTH_SHORT);
 
-                String affiliatesCode = null;
-                String ssoData = null;
+//                String affiliatesCode = null;
+//                String ssoData = null;
+//
+//                if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_AFFILIATES_CODE))
+//                    affiliatesCode = intent.getStringExtra(SSOMainActivity.SSO_INTENT_KEY_AFFILIATES_CODE);
+//
+//                if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_SSO_DATA))
+//                    ssoData = intent.getStringExtra(SSOMainActivity.SSO_INTENT_KEY_SSO_DATA);
 
-                if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_AFFILIATES_CODE))
-                    affiliatesCode = intent.getStringExtra(SSOMainActivity.SSO_INTENT_KEY_AFFILIATES_CODE);
+                Uri uri = intent.getData();
 
-                if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_SSO_DATA))
-                    ssoData = intent.getStringExtra(SSOMainActivity.SSO_INTENT_KEY_SSO_DATA);
+                String scheme = uri.getScheme();
+                String host = uri.getHost();
+                String affiliatesCode = uri.getQueryParameter(SSO_PARAM_AFFILIATESCODE);
+                String ssoData = uri.getQueryParameter(SSO_PARAM_SSODATA);
+                String ssoTime = uri.getQueryParameter(SSO_PARAM_SSOTIME);
+
+                if (StringUtil.isEmptyString(affiliatesCode) || StringUtil.isEmptyString(ssoData))
+                    return;
 
                 String icId = getPreferenceUtil().getString(PreferenceUtil.PREF_SHFGIC_ICID);
                 if (!StringUtil.isEmptyString(icId)) {
