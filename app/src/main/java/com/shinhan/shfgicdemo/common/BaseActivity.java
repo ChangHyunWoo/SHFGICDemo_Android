@@ -94,6 +94,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     public final int INTENT_VALUE_MODE_EXPIRY_DATE_AFTER = 8;               // 만료일 종료로 인한 등록(재가입)
     public final int INTENT_VALUE_MODE_EXPIRY_DATE_BEFORE = 9;              // 만료일 이전 30일이내 등록 (재가입)
     public final int INTENT_VALUE_MODE_PC_TO_APP = 10;                      // PC to App 인증
+    public final int INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN = 11;        // 제휴사 연동 가입
+    public final int INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN = 12;       // 제휴사 연동 로그인
 
     public final String INTENT_KEY_REQUEST_TYPE = "requestType";
     public final String INTENT_KEY_ICID = "icId";

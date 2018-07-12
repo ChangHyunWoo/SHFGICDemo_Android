@@ -80,7 +80,7 @@ public class PcToAppActivity extends BaseActivity implements ZXingScannerView.Re
      */
     public void initVerifyCheck() {
         showProgressDialog();
-        getShfgic().isSHFGIC(mSHFGICCallBack);
+        getShfgic().isSHFGIC(mSHFGICCallBack, SHFGICConfig.CodeRequestType.AUTH_LOGIN.getValue());
     }
 
     /**

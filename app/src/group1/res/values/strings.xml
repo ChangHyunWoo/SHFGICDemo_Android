@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">SHFGIC Demo Group1</string>
+    <!--<string name="app_name">SHFGIC Demo Group1</string>-->
+    <string name="app_name">신한 쏠(SOL)</string>
 
     <string name="title_main">신한통합인증 Demo Group1</string>
 

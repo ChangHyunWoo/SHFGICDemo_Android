@@ -31,9 +31,9 @@ public class SSOMainActivity extends BaseActivity {
     private static final String TAG = SSOMainActivity.class.getName();
 
     private static final int INDEX_BANK = 0;
-    private static final int INDEX_CARD = 1;
-    private static final int INDEX_INVESTMENT = 2;
-    private static final int INDEX_INSURANCE = 3;
+    private static final int INDEX_CARD = INDEX_BANK + 1;
+    private static final int INDEX_INVESTMENT = INDEX_CARD + 1;
+    private static final int INDEX_INSURANCE = INDEX_INVESTMENT + 1;
     private static final int SHINHAN_GROUP_AFFILIATED_COMPANY_NUM = 4;
 
 //    public static final String SSO_INTENT_KEY_GROUP_TYPE = "groupType";
@@ -247,7 +247,7 @@ public class SSOMainActivity extends BaseActivity {
 
         mCurrentStatus = new String[SHINHAN_GROUP_AFFILIATED_COMPANY_NUM];
 
-        for (int i = INDEX_BANK; i < SHINHAN_GROUP_AFFILIATED_COMPANY_NUM; ++i) {
+        for (int i = INDEX_BANK; i < INDEX_BANK + SHINHAN_GROUP_AFFILIATED_COMPANY_NUM; ++i) {
             String key = null;
 
             switch (i) {
@@ -392,6 +392,8 @@ public class SSOMainActivity extends BaseActivity {
                 catch (Exception e) {
                     showToast(this, e.toString(), Toast.LENGTH_SHORT);
                 }
+
+                ssoIntent = null;
             } else {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("market://details?id=" + getPackageName(groupType)));

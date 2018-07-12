@@ -3,6 +3,7 @@ package com.shinhan.shfgicdemo.view.certification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -57,6 +58,7 @@ public class IntergratedCertificationActivity extends PasswordBaseActivity {
     private String mIcId = "";
     private String pref_shfgic_verify_type = "";
     private String pref_shfgic_login_type = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,9 +138,15 @@ public class IntergratedCertificationActivity extends PasswordBaseActivity {
     public void initVerifyCheck() {
         showProgressDialog();
         if (StringUtil.notNullString(pref_shfgic_login_type).equals(SHFGICConfig.CodeFidoVerifyType.FINGER.getValue())) {
-            getShfgic().isSHFGIC(mSHFGICCallBack, false);
+            if (INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN == mModeType || INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN == mModeType)
+                getShfgic().isSHFGIC(mSHFGICCallBack, false, SHFGICConfig.CodeRequestType.INQUIRE_CERTI.getValue());
+            else
+                getShfgic().isSHFGIC(mSHFGICCallBack, false, SHFGICConfig.CodeRequestType.AUTH_LOGIN.getValue());
         } else {
-            getShfgic().isSHFGIC(mSHFGICCallBack);
+            if (INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN == mModeType || INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN == mModeType)
+                getShfgic().isSHFGIC(mSHFGICCallBack, SHFGICConfig.CodeRequestType.INQUIRE_CERTI.getValue());
+            else
+                getShfgic().isSHFGIC(mSHFGICCallBack, SHFGICConfig.CodeRequestType.AUTH_LOGIN.getValue());
         }
     }
 
@@ -319,6 +327,17 @@ public class IntergratedCertificationActivity extends PasswordBaseActivity {
                             String trStatus = resultData.getString(SHFGICConfig.TR_STATUS);
 
                             if (trStatus.equals(SHFGICConfig.CodeTrStatus.COMPLETE.getValue())) {
+
+                                // 제휴사 연동
+                                if (INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN == mModeType || INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN == mModeType) {
+
+                                    setResult(RESULT_OK);
+
+                                    finish();
+
+                                    return;
+                                }
+
                                 getPreferenceUtil().put(PreferenceUtil.PREF_LOGIN, true);
                                 getPreferenceUtil().put(PreferenceUtil.PREF_LOGIN_TYPE, PreferenceUtil.LOGIN_SHFGIC);
                                 getPreferenceUtil().put(PreferenceUtil.PREF_LOGIN_VERIFYTYPE, mLoginVerifyType);
@@ -359,6 +378,19 @@ public class IntergratedCertificationActivity extends PasswordBaseActivity {
                             }
 
                         } else {
+
+                            if (INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN == mModeType || INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN == mModeType) {
+                                if (!resultCode.equals(SHFGICConfig.CodeResultCode.F9003.getValue())) {
+                                    showToast(IntergratedCertificationActivity.this, resultMsg, Toast.LENGTH_SHORT);
+
+                                    setResult(RESULT_CANCELED);
+
+                                    finish();
+
+                                    return;
+                                }
+                            }
+
                             if (resultCode.equals(SHFGICConfig.CodeResultCode.F240.getValue())) {   // 단말의 등록지문정보 변경 후 로그인 시 발생하는 error response
                                 if (null != pref_shfgic_verify_type && pref_shfgic_verify_type.equals(SHFGICConfig.CodeFidoVerifyType.FINGER.getValue())) {
                                     showAlertDialog(null, getString(R.string.alert_fingerprint_changed), null, new DialogInterface.OnClickListener() {

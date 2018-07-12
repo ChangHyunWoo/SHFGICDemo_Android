@@ -40,6 +40,24 @@
                 <data android:scheme="${activityScheme}"
                     android:host="${activityHost}"/>
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:scheme="affiliatedconcern"
+                    android:host="join"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:scheme="affiliatedconcern"
+                    android:host="login"/>
+            </intent-filter>
         </activity>
 
         <activity
@@ -114,7 +132,8 @@
             android:name=".view.certification.IntergratedCertificationActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
 
 
         <activity

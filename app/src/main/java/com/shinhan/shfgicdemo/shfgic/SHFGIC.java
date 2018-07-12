@@ -126,8 +126,8 @@ public class SHFGIC {
      *
      * @param callBack
      */
-    public void isSHFGIC(SHFGICCallBack callBack) {
-        this.isSHFGIC(callBack, true);
+    public void isSHFGIC(SHFGICCallBack callBack, String requestType) {
+        this.isSHFGIC(callBack, true, requestType);
     }
 
     /**
@@ -136,7 +136,7 @@ public class SHFGIC {
      * @param callBack
      * @param isVerify - 사용자 유효성을 체크할지 여부
      */
-    public void isSHFGIC(SHFGICCallBack callBack, Boolean isVerify) {
+    public void isSHFGIC(SHFGICCallBack callBack, Boolean isVerify, String requestType) {
         mCallBack = callBack;
 
         String resultCode = SHFGICConfig.CodeResultCode.FAIL.getValue();
@@ -147,7 +147,7 @@ public class SHFGIC {
             resultMsg = mContext.getString(R.string.resultmsg_icid);
 
             if (isVerify) {
-                verifySHFGIC(callBack, "", pref_shfgic_icId, SHFGICConfig.CodeRequestType.AUTH_LOGIN.getValue());
+                verifySHFGIC(callBack, "", pref_shfgic_icId, requestType);
                 return;
             }
         }

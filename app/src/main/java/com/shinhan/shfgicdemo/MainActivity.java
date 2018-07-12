@@ -1,6 +1,7 @@
 package com.shinhan.shfgicdemo;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -50,6 +51,9 @@ import static com.shinhan.shfgicdemo.view.sso.SSOMainActivity.SSO_PARAM_SSOTIME;
 public class MainActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = MainActivity.class.getName();
 
+    public static final String AFFILIATED_CONCERN_SCHEME_VALUE = "affiliatedconcern";
+    public static final String AFFILIATED_CONCERN_NAME = "ACName";
+
     private ImageView btnTopBack, btnTopMenu;
     private TextView tvTopTitle;
 
@@ -58,6 +62,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private EditText etServer, etCiName, etCi;
 
     private boolean isShfgicLogin = false;
+
+    private String mACName = null;
 
     //설정
     private HashMap<String, String> mShfgicConfig = new HashMap<>();
@@ -101,7 +107,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         initPropertyDemo();
 
-        doSSOSetting(getIntent());
+        Intent intent = getIntent();
+
+        if (!doSSOSetting(intent))
+            doACSetting(intent);
     }
 
     public void onResume() {
@@ -125,7 +134,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         LogUtil.d(TAG, "onNewIntent");
         super.onNewIntent(intent);
 
-        doSSOSetting(intent);
+        if (!doSSOSetting(intent))
+            doACSetting(intent);
     }
 
     //통합인증 설정 정보
@@ -360,7 +370,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
-    private void doSSOSetting(Intent intent) {
+    private boolean doSSOSetting(Intent intent) {
+
+        boolean bIsSSO = false;
+
         if (null != intent) {
 //            if (intent.hasExtra(SSOMainActivity.SSO_INTENT_KEY_ACTION)) {
             if (intent.ACTION_VIEW.equals(intent.getAction())) {
@@ -386,7 +399,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 String ssoTime = uri.getQueryParameter(SSO_PARAM_SSOTIME);
 
                 if (StringUtil.isEmptyString(affiliatesCode) || StringUtil.isEmptyString(ssoData))
-                    return;
+                    return false;
+                else
+                    bIsSSO = true;
 
                 String icId = getPreferenceUtil().getString(PreferenceUtil.PREF_SHFGIC_ICID);
                 if (!StringUtil.isEmptyString(icId)) {
@@ -410,6 +425,83 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 //2. 로그인처리
                 //3. goPage 값에 따라 - page이동 (홈 ..)
             }
+        }
+
+        return bIsSSO;
+    }
+
+    private void doACSetting(Intent intent) {
+
+        if (null != intent) {
+            Uri uri = intent.getData();
+
+            if (null != uri) {
+                String scheme = uri.getScheme();
+                String host = uri.getHost();
+                mACName = uri.getQueryParameter(AFFILIATED_CONCERN_NAME);
+
+                if (intent.getAction().equals(Intent.ACTION_VIEW) && null != scheme && scheme.equals(AFFILIATED_CONCERN_SCHEME_VALUE) && !StringUtil.isEmptyString(host)) {
+
+                    sendPropertyDemo();
+
+                    intent = new Intent(this, IntergratedCertificationActivity.class);
+
+                    int nIntentValue = -1;
+
+                    if (host.equals("join"))
+                        nIntentValue = INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN;
+                    else if (host.equals("login"))
+                        nIntentValue = INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN;
+
+                    intent.putExtra(INTENT_KEY_MODE_TYPE, nIntentValue);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivityForResult(intent, nIntentValue);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (RESULT_OK == resultCode) {
+
+            Intent acIntent = new Intent();
+
+            acIntent.setAction(Intent.ACTION_VIEW);
+            acIntent.addCategory(Intent.CATEGORY_DEFAULT);
+            acIntent.addCategory(Intent.CATEGORY_BROWSABLE);
+
+            String host = null;
+
+            switch (requestCode) {
+                case INTENT_VALUE_MODE_AFFILIATED_CONCERN_JOIN:
+                    host = "join";
+                    break;
+
+                case INTENT_VALUE_MODE_AFFILIATED_CONCERN_LOGIN:
+                    host = "login";
+                    break;
+            }
+
+            acIntent.setData(Uri.parse(mACName + "://" + host + "?" + AFFILIATED_CONCERN_NAME + "=" + getString(R.string.app_name)));
+
+            try {
+                startActivity(acIntent);
+            }
+            catch (ActivityNotFoundException e) {
+                showToast(this, "ActivityNotFoundException~!!!", Toast.LENGTH_SHORT);
+            }
+            catch (Exception e) {
+                showToast(this, e.toString(), Toast.LENGTH_SHORT);
+            }
+
+            acIntent = null;
+
+            finish();
+        }
+        else if (RESULT_CANCELED == resultCode) {
+
+            finish();
         }
     }
 
